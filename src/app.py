@@ -2,8 +2,8 @@
 
 import streamlit as st
 import pandas as pd
-import data_handler       # módulo de dados
-import visualizations     # módulo de plots
+import data_handler       
+import visualizations     
 
 # --- CLASSE PRINCIPAL ---
 
@@ -68,6 +68,7 @@ class DashboardApp:
 
     def _render_sidebar(self):
         """Renderiza a barra lateral com filtros e informações."""
+        st.sidebar.image("./assets/github-logo.png", use_container_width=True)
         st.sidebar.header("Controles e Filtros")
 
         # filtros default caso os dados não carreguem
@@ -104,9 +105,8 @@ class DashboardApp:
         else:
             st.sidebar.error("Dados não carregados. Filtros indisponíveis.")
 
-
-        # st.sidebar.markdown("---")
         st.sidebar.info("Dashboard interativo para análise de linguagens no GitHub.")
+
         st.sidebar.caption("Desenvolvido por [Wellington M Santos](https://www.linkedin.com/in/wellington-moreira-santos/).")
 
         return selected_orgs_sb, selected_years_sb, top_n_sb
@@ -122,6 +122,32 @@ class DashboardApp:
             st.metric("Organizações na Análise", num_orgs_filtered)
         with kpi_col3:
             st.metric("Linguagens Identificadas", num_langs)
+
+    # --- ABAS - SOBRE, VISÃO GERAL, ANÁLISE TEMPORAL, ORGANIZAÇÕES, DADOS BRUTOS ---
+
+    def _render_tab_sobre(self):
+        """Renderiza o conteúdo da aba 'Sobre o Projeto'."""
+        st.header("Sobre o Projeto e os Dados")
+        st.markdown("""
+        Este dashboard apresenta uma análise das linguagens de programação mais utilizadas por grandes organizações de tecnologia,
+        com base nos dados públicos de seus repositórios no GitHub.
+
+        **Metodologia:**
+        *   Os dados foram coletados utilizando a API v3 do GitHub.
+        *   Foram considerados apenas repositórios públicos, não arquivados e que não são forks.
+        *   A métrica utilizada é o número de **bytes de código** por linguagem, conforme reportado pela API do GitHub para cada repositório.
+        *   Os dados são agrupados pelo **ano de criação** de cada repositório.
+
+        **Interpretação:**
+        *   O volume de bytes é um *proxy* para a popularidade ou uso de uma linguagem, mas não reflete necessariamente a importância estratégica,
+            complexidade ou atividade de desenvolvimento *após* a criação do repositório.
+        *   A análise foca em tendências gerais e comparações entre as organizações selecionadas.
+
+        **Limitações:**
+        *   Os dados podem estar incompletos ou apresentar erros, especialmente para organizações com muitos repositórios.
+        *   O volume de bytes de código pode variar de acordo com o estado de arquivamento ou a natureza do repositório.
+        """)
+        st.info("Utilize os filtros na barra lateral e navegue pelas outras abas para explorar os dados.")
 
     def _render_tab_visao_geral(self, top_n):
         """Renderiza o conteúdo da aba 'Visão Geral'."""
@@ -232,7 +258,7 @@ class DashboardApp:
         selected_orgs, selected_years, top_n = self._render_sidebar()
 
         # --- Interface Principal ---
-        st.markdown("<h1 style='text-align: center; padding: 20px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); background-color: #FFFFFF; margin-bottom: 15px;'>Análise do uso de linguagens de programação por organizações com base em repositórios publicos.</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center; padding: 20px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); background-color: #FFFFFF; margin-bottom: 15px;'>Análise do Uso de Linguagens de Programação </h1>", unsafe_allow_html=True)
 
         if self.df_full is not None and selected_orgs: # tem dados e algum org?
             self.df_filtered = data_handler.filter_data(self.df_full, selected_orgs, selected_years)
@@ -241,12 +267,13 @@ class DashboardApp:
                 self._render_kpis() 
 
                 # --- Abas ---
-                tab1, tab2, tab3, tab4 = st.tabs(["Visão Geral", "Análise Temporal", "Organizações", "Dados Brutos"])
+                tab1, tab2, tab3, tab4, tab5 = st.tabs(["Visão Geral", "Análise Temporal", "Organizações", "Dados Brutos", "ℹ️ Sobre"])
 
                 with tab1: self._render_tab_visao_geral(top_n)
                 with tab2: self._render_tab_analise_temporal(top_n)
                 with tab3: self._render_tab_organizacoes(selected_orgs, top_n) 
                 with tab4: self._render_tab_dados_brutos()
+                with tab5: self._render_tab_sobre()
 
             else:
                 st.warning("⚠️ Nenhum dado corresponde aos filtros selecionados. Ajuste os filtros na barra lateral.")
@@ -254,7 +281,7 @@ class DashboardApp:
         elif not selected_orgs and self.df_full is not None:
              st.warning("⬅️ Por favor, selecione pelo menos uma organização na barra lateral para exibir os dados.")
 
-# --- FIM DA CLASSE
+# --- FIM DA CLASSE ---
 
 if __name__ == "__main__":
     app = DashboardApp()
