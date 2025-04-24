@@ -1,3 +1,13 @@
+"""
+Módulo principal da aplicação Streamlit para análise de linguagens do GitHub.
+
+Este script define a classe DashboardApp que encapsula toda a interface
+do usuário (UI), a lógica de interação e a orquestração da chamada
+aos módulos de tratamento de dados (data_handler) e visualização (visualizations).
+Ele configura a página, aplica CSS customizado, renderiza a barra lateral
+com filtros, exibe KPIs e organiza as visualizações em abas.
+"""
+
 # --- IMPORTS ---
 
 import streamlit as st
