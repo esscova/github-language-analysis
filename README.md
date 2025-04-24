@@ -119,7 +119,8 @@ github-language-analysis/
 
 ## Destaques e Considerações Finais
 ![image](./src/assets/screenshot.png)
-Este projeto aplica conceitos fundamentais de engenharia de dados:
+
+**Este projeto aplica conceitos fundamentais de engenharia de dados:**
 
 *   **Extração de Dados:** Coleta via API REST.
 *   **Interação com APIs:** Autenticação, paginação, tratamento de limites de taxa.
@@ -132,6 +133,13 @@ Este projeto aplica conceitos fundamentais de engenharia de dados:
 *   **Gerenciamento de Configuração/Segredos:** Uso de `.env` e `.gitignore` para tokens.
 *   **Otimização:** Cache de dados no dashboard (`@st.cache_data`).
 
+**Limitações Conhecidas**
+
+*   A métrica "bytes de código" é um proxy.
+*   Análise baseada no ano de criação do repositório.
+*   Limites da API do GitHub podem impactar a coleta.
+*   Tratamento de erros pode ser aprimorado.
+*   CSV pode não ser ideal para volumes muito grandes.
 
 ## Autor
 [Wellington M Santos](https://www.linkedin.com/in/wellington-moreira-santos/)
