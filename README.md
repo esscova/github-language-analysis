@@ -104,7 +104,7 @@ github-language-analysis/
         ```bash
         streamlit run src/app.py
         ```
-    *   Abra o navegador no endereço fornecido pelo Streamlit, geralmente em http://localhost:8501
+    *   Abra o navegador no endereço fornecido pelo Streamlit, geralmente em http://localhost:8501.
 
 ## Tecnologias Utilizadas
 
@@ -117,5 +117,21 @@ github-language-analysis/
 *   **API:** GitHub REST API v3
 *   **Formato de Dados:** CSV
 
-## Contato
+## Destaques e Considerações Finais
+![image](./src/assets/screenshot.png)
+Este projeto aplica conceitos fundamentais de engenharia de dados:
+
+*   **Extração de Dados:** Coleta via API REST.
+*   **Interação com APIs:** Autenticação, paginação, tratamento de limites de taxa.
+*   **Tratamento de Erros e Resiliência:** Retentativas, pausas, retomada de coleta.
+*   **Processamento e Limpeza:** Filtragem, padronização, conversão de tipos (Pandas).
+*   **Armazenamento:** Persistência simples em CSV.
+*   **Pipeline Básico:** Fonte (API) -> Processamento (Python) -> Armazenamento (CSV) -> Apresentação (Dashboard).
+*   **Modularidade:** Código organizado em módulos com responsabilidades distintas (`src/`).
+*   **Visualização:** Apresentação interativa de dados (Streamlit, Plotly).
+*   **Gerenciamento de Configuração/Segredos:** Uso de `.env` e `.gitignore` para tokens.
+*   **Otimização:** Cache de dados no dashboard (`@st.cache_data`).
+
+
+## Autor
 [Wellington M Santos](https://www.linkedin.com/in/wellington-moreira-santos/)
