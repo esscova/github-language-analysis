@@ -1,3 +1,15 @@
+"""
+
+Módulo responsável pela criação das figuras de visualização de dados.
+
+Este script contém funções que utilizam a biblioteca Plotly Express para gerar
+diferentes tipos de gráficos (barras, linhas, área, pizza) a partir de
+DataFrames pré-processados (geralmente provenientes do módulo data_handler).
+Cada função retorna um objeto de figura Plotly (plotly.graph_objects.Figure)
+que pode ser exibido em uma aplicação Streamlit usando st.plotly_chart.
+
+"""
+
 # --- IMPORTS ---
 
 import plotly.express as px

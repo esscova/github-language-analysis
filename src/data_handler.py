@@ -1,3 +1,18 @@
+"""
+
+Módulo responsável pelo carregamento, tratamento e agregação dos dados.
+
+Este script contém funções para:
+- Carregar dados do arquivo CSV especificado.
+- Padronizar nomes de organizações.
+- Tratar tipos de dados (como o ano).
+- Filtrar o DataFrame principal com base nas seleções do usuário.
+- Calcular métricas agregadas (KPIs, totais por linguagem/organização/ano)
+  necessárias para as visualizações no dashboard.
+Utiliza o cache do Streamlit (@st.cache_data) na função de carregamento
+para otimizar a performance.
+
+"""
 # --- IMPORTS ---
 
 import pandas as pd
