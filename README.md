@@ -58,6 +58,35 @@ github-language-analysis/
 ├── requirements.txt           # Dependências Python do projeto
 └── README.md                  # Este arquivo
 ```
+## Configuração e Instalação
+
+1.  **Clone o Repositório:**
+    ```bash
+    git clone https://github.com/esscova/github-language-analysis.git
+    cd github-language-analysis
+    ```
+
+2.  **Crie e Ative um Ambiente Virtual (Recomendado):**
+    ```bash
+    python -m venv .venv
+    # No Linux/macOS:
+    source venv/bin/activate
+    # No Windows:
+    #.\venv\Scripts\activate
+    ```
+
+3.  **Instale as Dependências:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Configure o Token do GitHub:**
+    *   Crie um arquivo chamado `.env` na raiz do projeto.
+    *   Adicione a seguinte linha ao arquivo `.env`, substituindo `seu_token_aqui` pelo seu Token de Acesso Pessoal do GitHub (com escopo `public_repo`):
+        ```dotenv
+        GITHUB_TOKEN='seu_token_aqui'
+        ```
+    *   **Importante:** Certifique-se de que o arquivo `.env` está listado no seu `.gitignore` para evitar o envio acidental do seu token. 
 
 ## Contato
 [Wellington M Santos](https://www.linkedin.com/in/wellington-moreira-santos/)
