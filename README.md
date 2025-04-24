@@ -36,5 +36,28 @@ O projeto é composto por duas partes principais:
 *   Implementa cache (`@st.cache_data`) para otimizar o carregamento de dados.
 *   Estrutura modularizada (`src/data_handler.py`, `src/visualizations.py`) para separação de responsabilidades.
 
+## Estrutura do Projeto
+
+```
+github-language-analysis/
+├── docs/                      # Documentação detalhada dos módulos
+│   ├── app.md
+│   ├── data_handler.md
+│   ├── github_analyzer.md
+│   └── visualizations.md
+├── src/                       # Código fonte do projeto
+│   ├── app.py                 # Script principal da aplicação Streamlit
+│   ├── assets/                # Recursos estáticos (imagens, etc.)
+│   ├── data/                  # Dados gerados ou utilizados
+│   │   └── languages_by_year.csv
+│   ├── data_handler.py        # Módulo de manipulação de dados
+│   ├── github_analyzer.py     # Script de coleta de dados
+│   └── visualizations.py      # Módulo de geração de gráficos
+├── .env.example               # Exemplo de como deve ser o arquivo .env
+├── .gitignore                 # Especifica arquivos e diretórios a serem ignorados pelo Git
+├── requirements.txt           # Dependências Python do projeto
+└── README.md                  # Este arquivo
+```
+
 ## Contato
 [Wellington M Santos](https://www.linkedin.com/in/wellington-moreira-santos/)
