@@ -88,5 +88,34 @@ github-language-analysis/
         ```
     *   **Importante:** Certifique-se de que o arquivo `.env` está listado no seu `.gitignore` para evitar o envio acidental do seu token. 
 
+## Como Usar
+
+1.  **Coleta de Dados:**
+    *   (Opcional) Edite a lista `organizations` dentro do bloco `if __name__ == "__main__":` no script `src/github_analyzer.py`.
+    *   Execute o script de coleta a partir da raiz do projeto:
+        ```bash
+        python src/github_analyzer.py
+        ```
+    *   Este processo criará ou atualizará o arquivo `src/data/languages_by_year.csv`.
+
+2.  **Execução do Dashboard:**
+    *   Certifique-se de que o arquivo `src/data/languages_by_year.csv` existe.
+    *   Execute a aplicação Streamlit a partir da raiz do projeto:
+        ```bash
+        streamlit run src/app.py
+        ```
+    *   Abra o navegador no endereço fornecido pelo Streamlit, geralmente em http://localhost:8501
+
+## Tecnologias Utilizadas
+
+*   **Linguagem:** Python 3
+*   **Bibliotecas Principais:**
+    *   `requests`: Para interação com a API do GitHub.
+    *   `pandas`: Para manipulação e análise de dados.
+    *   `streamlit`: Para construção do dashboard interativo.
+    *   `plotly` / `plotly.express`: Para criação dos gráficos interativos.
+*   **API:** GitHub REST API v3
+*   **Formato de Dados:** CSV
+
 ## Contato
 [Wellington M Santos](https://www.linkedin.com/in/wellington-moreira-santos/)
