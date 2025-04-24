@@ -6,7 +6,7 @@ import streamlit as st #! precisa para o @st.cache_data
 
 # --- CONSTANTES ---
 
-CSV_FILE = 'languages_by_year.csv'
+CSV_FILE = './data/languages_by_year.csv'
 PADRONIZACAO_NOMES = {
     'microsoft': 'Microsoft',
     'APPLE': 'Apple',
