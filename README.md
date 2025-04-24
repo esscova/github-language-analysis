@@ -8,5 +8,33 @@ O projeto é composto por duas partes principais:
 1.  Um script de coleta de dados (`src/github_analyzer.py`) que interage com a API do GitHub.
 2.  Um dashboard interativo (`src/app.py` e módulos auxiliares) construído com Streamlit para visualizar os dados coletados.
 
+## Funcionalidades
+
+**Coleta de Dados:**
+*   Conecta-se à API v3 do GitHub usando um token de acesso pessoal (recomendado, lido de `.env`).
+*   Busca repositórios públicos para uma lista configurável de organizações.
+*   Filtra repositórios para excluir forks e arquivos arquivados.
+*   Extrai dados de linguagens (bytes de código por linguagem) e data de criação para cada repositório.
+*   Implementa tratamento básico de limites de taxa (rate limiting) da API, com pausas e retentativas.
+*   Salva os dados coletados em um arquivo CSV (`src/data/languages_by_year.csv`).
+*   Tenta retomar a coleta a partir de dados existentes no CSV para evitar reprocessamento.
+
+**Dashboard de Visualização (Streamlit App):**
+*   Lê os dados processados do arquivo `src/data/languages_by_year.csv`.
+*   Apresenta uma interface interativa com filtros para:
+    *   Seleção de Organizações.
+    *   Intervalo de Anos (baseado na criação do repositório).
+    *   Número de "Top N" linguagens a serem exibidas.
+*   Exibe Key Performance Indicators (KPIs) resumidos.
+*   Organiza as visualizações em abas:
+    *   **Visão Geral:** Top linguagens gerais e volume total por organização.
+    *   **Análise Temporal:** Evolução do volume total e distribuição das linguagens ao longo do tempo.
+    *   **Organizações:** Detalhes específicos por organização (tendência e top linguagens).
+    *   **Dados Brutos:** Tabela interativa com os dados filtrados e opção de download.
+    *   **Sobre:** Descrição do projeto, metodologia e limitações.
+*   Utiliza Plotly para gráficos interativos.
+*   Implementa cache (`@st.cache_data`) para otimizar o carregamento de dados.
+*   Estrutura modularizada (`src/data_handler.py`, `src/visualizations.py`) para separação de responsabilidades.
+
 ## Contato
 [Wellington M Santos](https://www.linkedin.com/in/wellington-moreira-santos/)
